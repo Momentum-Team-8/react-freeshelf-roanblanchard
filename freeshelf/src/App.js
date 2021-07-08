@@ -124,7 +124,7 @@ export const Book = (props) => {
   return (
     <div id={id} className=''>
       <h2>{title}</h2>
-      <img src="{coverImageUrl}" alt="book title"></img>
+      <img src={coverImageUrl}></img>
       <p>{author}</p>
       <p>{shortDescription}</p>
       <a href="{url}">{url}</a>

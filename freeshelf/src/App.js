@@ -111,7 +111,7 @@ export function App() {
             <div class="books">
             {books.map((book, idx) => {
                 return (
-                    <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} />
+                    <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} detailedDescription={book.detailedDescription} />
             )})}
             </div>
         </main>
@@ -121,17 +121,17 @@ export function App() {
 
 
 export const Book = (props) => {
-  const { id, title, author, url, shortDescription, coverImageUrl, publisher, publicationDate} = props
+  const { id, title, author, url, shortDescription, coverImageUrl, publisher, publicationDate, detailedDescription} = props
 
   return (
     <div id={id} className='card'>
       <h2>{title}</h2>
       <img src={coverImageUrl}></img>
-      <p>{author}</p>
-      <p>{shortDescription}</p>
-      <a href={url}>{url}</a>
-      <p>{publisher}</p>
-      <p>Published: {publicationDate}</p>
+      <p class="author">{author}</p>
+      <p class="description">{shortDescription}</p>
+      <p class="publisher">{publisher} / {publicationDate}</p>
+      <p class="description">{detailedDescription}</p>
+      <a href={url}>learn more →</a>
     </div>
   )
 }

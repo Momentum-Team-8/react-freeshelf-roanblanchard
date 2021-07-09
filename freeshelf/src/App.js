@@ -62,7 +62,7 @@ export function App() {
         shortDescription:
           "In Clojure for the Brave and True, you'll learn to wield this awesome language to its fullest!",
         coverImageUrl:
-          "http://nostarch.com/sites/default/files/styles/uc_product/public/clojure_cover-front_final.png",
+          "https://images-na.ssl-images-amazon.com/images/I/91guUDbRy9L.jpg",
         publisher: "No Starch Press",
         publicationDate: "2015",
         detailedDescription:
@@ -108,10 +108,12 @@ export function App() {
     return (
         <main>
             <h1>Freeshelf: free online coding resources</h1>
-                {books.map((book, idx) => {
+            <div class="books">
+            {books.map((book, idx) => {
                 return (
                     <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} />
             )})}
+            </div>
         </main>
         )
     
@@ -122,14 +124,14 @@ export const Book = (props) => {
   const { id, title, author, url, shortDescription, coverImageUrl, publisher, publicationDate} = props
 
   return (
-    <div id={id} className=''>
+    <div id={id} className='card'>
       <h2>{title}</h2>
       <img src={coverImageUrl}></img>
       <p>{author}</p>
       <p>{shortDescription}</p>
-      <a href="{url}">{url}</a>
+      <a href={url}>{url}</a>
       <p>{publisher}</p>
-      <p>{publicationDate}</p>
+      <p>Published: {publicationDate}</p>
     </div>
   )
 }

@@ -107,7 +107,13 @@ export function App() {
         }])
     return (
         <main>
-            <h1>Freeshelf: free online coding resources</h1>
+            <div class="intro">
+                <div class="blur">
+                    <h1>Freeshelf</h1>
+                    <h3>free online coding resources</h3>
+                </div>
+            </div>
+            
             <div class="books">
             {books.map((book, idx) => {
                 return (

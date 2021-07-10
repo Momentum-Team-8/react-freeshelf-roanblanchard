@@ -135,7 +135,9 @@ export const Book = (props) => {
       <img src={coverImageUrl}></img>
       <p class="author">{author}</p>
       <p class="description">{shortDescription}</p>
-      <p class="publisher">{publisher} / {publicationDate}</p>
+      {publisher !== null && 
+        <p class="publisher">{publisher} / {publicationDate}</p>
+      }
       <p class="description">{detailedDescription}</p>
       <a href={url}>learn more →</a>
     </div>

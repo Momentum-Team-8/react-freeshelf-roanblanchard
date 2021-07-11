@@ -16,7 +16,8 @@ export function App() {
         publicationDate: "Jan 2020",
         detailedDescription:
           "It’s easy to learn parts of JavaScript, but much harder to learn it completely—or even sufficiently—whether you’re new to the language or have used it for years. With the 'You Don’t Know JS' book series, you’ll get a more complete understanding of JavaScript, including trickier parts of the language that many experienced JavaScript programmers simply avoid. The series’ first book, Up & Going, provides the necessary background for those of you with limited programming experience. By learning the basic building blocks of programming, as well as JavaScript’s core mechanisms, you’ll be prepared to dive into the other, more in-depth books in the series—and be well on your way toward true JavaScript.",
-      },
+          expanded: false,
+        },
       {
         title: "Learning JavaScript Design Patterns",
         author: "Addy Osmani",
@@ -29,7 +30,8 @@ export function App() {
         publicationDate: "2012",
         detailedDescription:
           "With Learning JavaScript Design Patterns, you’ll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you. Explore many popular design patterns, including Modules, Observers, Facades, and Mediators. Learn how modern architectural patterns—such as MVC, MVP, and MVVM—are useful from the perspective of a modern web application developer. This book also walks experienced JavaScript developers through modern module formats, how to namespace code effectively, and other essential topics.",
-      },
+          expanded: false,
+        },
       {
         title: "An Introduction to Programming in Go",
         author: "Caleb Doxsy",
@@ -42,7 +44,8 @@ export function App() {
         publicationDate: "2012",
         detailedDescription:
           "Computer programming is the art, craft and science of writing programs which define how computers operate. This book will teach you how to write computer programs using a programming language designed by Google named Go. Go is a general purpose programming language with advanced features and a clean syntax. Because of its wide availability on a variety of platforms, its robust well-documented common library, and its focus on good software engineering principles, Go is an ideal language to learn as your first programming language.",
-      },
+          expanded: false,
+        },
       {
         title: "Learn to Program",
         author: "Chris Pine",
@@ -54,7 +57,8 @@ export function App() {
         publicationDate: "2009",
         detailedDescription:
           "When you program a computer, you have to 'speak' in a language your computer understands: a programming language. There are lots and lots of different languages out there, and many of them are excellent. In this tutorial I chose to use my favorite programming language, Ruby.",
-      },
+          expanded: false,
+        },
       {
         title: "Clojure for the Brave and True",
         author: "Daniel Higgenbotham",
@@ -67,7 +71,8 @@ export function App() {
         publicationDate: "2015",
         detailedDescription:
           "For weeks, months—nay!—from the very moment you were born, you’ve felt it calling to you. At long last you'll be united with the programming language you've been longing for: Clojure! Clojure’s popularity continues to grow, with companies like Netflix using it to build everything from complex, distributed systems to simple microservices to user interfaces. In Clojure for the Brave and True, you'll learn to wield this awesome language to its fullest!",
-      },
+          expanded: false,
+        },
       {
         title: "Joy of Elixir",
         author: "Ryan Bigg",
@@ -79,7 +84,8 @@ export function App() {
         publicationDate: "2017",
         detailedDescription:
           "Joy of Elixir is a gentle introduction to programming, aimed at people who already know some things about computers, but who have little-to-no programming experience. If you think you don't know enough about computers, well you got here already and that's enough! This book will teach you the core concepts of the Elixir programming language in a fun and enjoyable way. If you're completely new to programming and you want to learn how to make a computer do things using the power of programming and you want to experience some joy while doing it, then read on!",
-      },
+          expanded: false,
+        },
       {
         title: "Building Skills in Object-Oriented Design",
         author: "Steven F. Lott",
@@ -92,7 +98,8 @@ export function App() {
         publicationDate: null,
         detailedDescription:
           "The intent of this book is to help you, the beginning designer, by giving you a sequence of interesting and moderately complex exercises in OO design. The exercises are not focused on a language, but on a design process. The exercises are not hypothetical, but must lead directly to working programs. This book can also help managers develop a level of comfort with the process of OO software development. This book allows the reader to explore the processes and artifacts of OO design before project deadlines make good design seem impossible.",
-      },
+        expanded: false,
+        },
       {
         title: "Structure and Interpretation of Computer Programs",
         author: "Harold Abelson, Gerald Jay Sussman, and Julie Sussman",
@@ -104,7 +111,19 @@ export function App() {
         publicationDate: "1984",
         detailedDescription:
         "Structure and Interpretation of Computer Programs has had a dramatic impact on computer science curricula over the past decade. This long-awaited revision contains changes throughout the text. There are new implementations of most of the major programming systems in the book, including the interpreters and compilers, and the authors have incorporated many small changes that reflect their experience teaching the course at MIT since the first edition was published. A new theme has been introduced that emphasizes the central role played by different approaches to dealing with time in computational models: objects with state, concurrent programming, functional programming and lazy evaluation, and nondeterministic programming. There are new example sections on higher-order procedures in graphics and on applications of stream processing in numerical programming, and many new exercises. In addition, all the programs have been reworked to run in any Scheme implementation that adheres to the IEEE standard.",
-        }])
+        expanded: false,
+    }])
+    
+        const handleExpanded = (bookName) => {
+            const newBooks = books.map((book) => {
+              if (book.title === bookName && book.expanded) {
+                return { ...book, expanded: false }
+              } else {
+                return { ...book, expanded: true }
+              }
+            })
+            setBooks(newBooks)
+          }
     return (
         <main>
             <div class="intro">
@@ -113,12 +132,17 @@ export function App() {
                     <h3>free online coding resources</h3>
                 </div>
             </div>
-            
             <div class="books">
             {books.map((book, idx) => {
-                return (
-                    <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} detailedDescription={book.detailedDescription} />
-            )})}
+                if (book.expanded === true) {
+                    return (
+                        <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} detailedDescription={book.detailedDescription} expanded={book.expanded} handleExpanded={(book) => handleExpanded(book)} />
+                )} else {
+                    return (
+                        <Book title={book.title} author={book.author} key={idx} id={idx} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} expanded={book.expanded} handleExpanded={(book) => handleExpanded(book)} />
+                )
+                }
+                })}
             </div>
         </main>
         )
@@ -127,21 +151,36 @@ export function App() {
 
 
 export const Book = (props) => {
-  const { id, title, author, url, shortDescription, coverImageUrl, publisher, publicationDate, detailedDescription} = props
+  const { id, title, author, url, shortDescription, coverImageUrl, publisher, publicationDate, detailedDescription, expanded, handleExpanded} = props
 
   return (
     <div id={id} className='card'>
-      <h2>{title}</h2>
-      <img src={coverImageUrl}></img>
-      <p class="author">{author}</p>
-      <p class="description">{shortDescription}</p>
-      {publisher !== null && 
-        <p class="publisher">{publisher} / {publicationDate}</p>
+        {expanded === false && 
+        <>
+        <h2>{title}</h2>
+        <img src={coverImageUrl}></img>
+        <p class="author">{author}</p>
+        <p class="description">{shortDescription}</p>
+        <button onClick={() => handleExpanded(title)}>{expanded ? 'read less ⬆' : 'read more ⬇'}</button>
+        </>
+        }
+        {expanded === true &&
+        <>
+        <h2>{title}</h2>
+        <img src={coverImageUrl}></img>
+        <p class="author">{author}</p>
+            {publisher &&
+                <p class="publisher">{publisher} / {publicationDate}</p>
+            }
+        <p class="description">{detailedDescription}</p>
+        <button onClick={() => handleExpanded(title)}>{expanded ? 'read less ⬆' : 'read more ⬇'}</button>
+        <a href={url}>learn more →</a>
+        </>
       }
-      <p class="description">{detailedDescription}</p>
-      <a href={url}>learn more →</a>
+      
     </div>
   )
 }
+
 
 export default App;

@@ -116,10 +116,10 @@ export function App() {
     
         const handleExpanded = (bookName) => {
             const newBooks = books.map((book) => {
-              if (book.title === bookName && book.expanded) {
-                return { ...book, expanded: false }
-              } else {
+              if (book.title === bookName && book.expanded === false) {
                 return { ...book, expanded: true }
+              } else {
+                return { ...book, expanded: false }
               }
             })
             setBooks(newBooks)
@@ -135,14 +135,9 @@ export function App() {
             </div>
             <div class="books">
             {books.map((book, idx) => {
-                if (book.expanded === true) {
-                    return (
-                        <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} detailedDescription={book.detailedDescription} expanded={book.expanded} handleExpanded={(book) => handleExpanded(book)} />
-                )} else {
-                    return (
-                        <Book title={book.title} author={book.author} key={idx} id={idx} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} expanded={book.expanded} handleExpanded={(book) => handleExpanded(book)} />
-                )
-                }
+                return (
+                    <Book title={book.title} author={book.author} key={idx} id={idx} url={book.url} shortDescription={book.shortDescription} coverImageUrl={book.coverImageUrl} publisher={book.publisher} publicationDate={book.publicationDate} detailedDescription={book.detailedDescription} expanded={book.expanded} handleExpanded={(book) => handleExpanded(book)} />
+            )
                 })}
             </div>
         </main>

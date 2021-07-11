@@ -130,6 +130,7 @@ export function App() {
                 <div class="blur">
                     <h1>Freeshelf</h1>
                     <h3>free online coding resources</h3>
+                    <h2>↓</h2>
                 </div>
             </div>
             <div class="books">

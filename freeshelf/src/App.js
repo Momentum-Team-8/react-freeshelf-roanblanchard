@@ -128,11 +128,12 @@ export function App() {
         <main>
             <div class="intro">
                 <div class="blur">
-                    <h1>Freeshelf</h1>
-                    <h3>free online coding resources</h3>
+                    <h1>Freeshelf.</h1>
+                    <h3>free online coding resources.</h3>
                     <h2>↓</h2>
                 </div>
             </div>
+            <h3 class="separate">books</h3>
             <div class="books">
             {books.map((book, idx) => {
                 return (
@@ -140,6 +141,7 @@ export function App() {
             )
                 })}
             </div>
+            <footer>RoanBlanchard 2021</footer>
         </main>
         )
     

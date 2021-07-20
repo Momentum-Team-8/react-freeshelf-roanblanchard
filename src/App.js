@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
 
@@ -156,7 +155,7 @@ export const Book = (props) => {
         {expanded === false && 
         <>
         <h2>{title}</h2>
-        <img src={coverImageUrl}></img>
+        <img alt="image" src={coverImageUrl}></img>
         <p class="author">{author}</p>
         <p class="description">{shortDescription}</p>
         <button onClick={() => handleExpanded(title)}>{expanded ? 'read less ⬆' : 'read more ⬇'}</button>
@@ -165,7 +164,7 @@ export const Book = (props) => {
         {expanded === true &&
         <>
         <h2>{title}</h2>
-        <img src={coverImageUrl}></img>
+        <img alt="image" src={coverImageUrl}></img>
         <p class="author">{author}</p>
             {publisher &&
                 <p class="publisher">{publisher} / {publicationDate}</p>
